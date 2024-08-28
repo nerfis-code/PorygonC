@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b52ncwyyup8qy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4msu"]
+
+[node name="PokemonNode" type="RigidBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+layers = 2
+alpha_cut = 2
+texture_filter = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_b4msu")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673352, 0)
+text = "Pokemon"
+font_size = 36
+width = 300.0
