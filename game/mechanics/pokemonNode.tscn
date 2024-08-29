@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b52ncwyyup8qy"]
+[gd_scene load_steps=7 format=3 uid="uid://b52ncwyyup8qy"]
+
+[ext_resource type="Script" path="res://Game/mechanics/PokemonNode.cs" id="1_ui8lr"]
+[ext_resource type="FontFile" uid="uid://wqleqifagn6g" path="res://Game/Fonts/power clear.ttf" id="2_4n1rt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4msu"]
 
@@ -12,6 +15,7 @@ bg_color = Color(0.189847, 0.700655, 0.489799, 1)
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_6rr6f")
 
 [node name="PokemonNode" type="RigidBody3D"]
+script = ExtResource("1_ui8lr")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 layers = 2
@@ -24,6 +28,7 @@ shape = SubResource("BoxShape3D_b4msu")
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673352, 0)
 text = "Pokemon"
+font = ExtResource("2_4n1rt")
 font_size = 15
 width = 300.0
 

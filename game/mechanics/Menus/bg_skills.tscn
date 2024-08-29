@@ -1,0 +1,379 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn6i5cecilduf"]
+
+[ext_resource type="Script" path="res://Game/mechanics/Menus/bg_skills.cs" id="1_tawk4"]
+[ext_resource type="Texture2D" uid="uid://b1k3yab7nmmkn" path="res://Game/mechanics/Menus/bg_skills.png" id="2_u7f8e"]
+[ext_resource type="Texture2D" uid="uid://c2tri4xu43e4p" path="res://Game/Graphics/Pokemon/Front/PIKACHU.png" id="3_8tyj7"]
+[ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="3_uxrpk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrtfo"]
+bg_color = Color(0.0941176, 0.752941, 0.12549, 1)
+
+[sub_resource type="Theme" id="Theme_eegxj"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_nrtfo")
+
+[node name="bg_skills" type="Control"]
+layout_mode = 3
+anchor_right = 0.444
+anchor_bottom = 0.594
+offset_right = 0.511963
+offset_bottom = 0.0879822
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_tawk4")
+
+[node name="BgSkills" type="Sprite2D" parent="."]
+position = Vector2(256, 193)
+texture = ExtResource("2_u7f8e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(101, 208)
+scale = Vector2(2, 2)
+texture = ExtResource("3_8tyj7")
+hframes = 112
+
+[node name="Stats" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = -86.664
+offset_top = -54.615
+offset_right = 65.336
+offset_bottom = -31.615
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 30
+text = "Estadisticas"
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = -73.664
+offset_top = -11.615
+offset_right = 47.336
+offset_bottom = 11.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 30
+text = "Pikachu"
+
+[node name="Lv" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = -59.664
+offset_top = 24.385
+offset_right = 61.336
+offset_bottom = 47.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "50"
+
+[node name="info_Obj" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = -40.664
+offset_top = 246.385
+offset_right = 80.336
+offset_bottom = 269.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 30
+text = "Objecto"
+
+[node name="Obj" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = -96.664
+offset_top = 280.385
+offset_right = 24.336
+offset_bottom = 303.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.669315, 0.669315, 0.669315, 1)
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 30
+text = "Ninguno"
+
+[node name="info_Ps" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 128.336
+offset_top = 5.38499
+offset_right = 249.336
+offset_bottom = 28.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Ps
+"
+horizontal_alignment = 1
+
+[node name="Ps" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 247.336
+offset_top = 7.38499
+offset_right = 368.336
+offset_bottom = 26.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 20
+text = "Ps
+"
+horizontal_alignment = 1
+
+[node name="info_Attk" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 131.336
+offset_top = 47.385
+offset_right = 252.336
+offset_bottom = 70.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Ataque"
+
+[node name="Attk" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 246.336
+offset_top = 48.385
+offset_right = 367.336
+offset_bottom = 71.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Ataque"
+horizontal_alignment = 2
+
+[node name="info_Def" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 130.336
+offset_top = 79.385
+offset_right = 251.336
+offset_bottom = 102.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Defensa"
+
+[node name="Def" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 245.336
+offset_top = 80.385
+offset_right = 366.336
+offset_bottom = 103.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Defensa"
+horizontal_alignment = 2
+
+[node name="info_SpAttk" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 130.336
+offset_top = 112.385
+offset_right = 255.336
+offset_bottom = 135.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "At.Esp"
+
+[node name="SpAttk" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 248.336
+offset_top = 112.385
+offset_right = 373.336
+offset_bottom = 135.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "At.Esp"
+horizontal_alignment = 2
+
+[node name="info_SpDef" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 130.336
+offset_top = 145.385
+offset_right = 251.336
+offset_bottom = 168.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Def.EsP"
+
+[node name="SpDef" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 248.336
+offset_top = 144.385
+offset_right = 369.336
+offset_bottom = 167.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Def.Esp"
+horizontal_alignment = 2
+
+[node name="info_Spd" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 131.336
+offset_top = 178.385
+offset_right = 251.336
+offset_bottom = 201.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Velocidad"
+
+[node name="Spd" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 247.336
+offset_top = 177.385
+offset_right = 367.336
+offset_bottom = 200.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Velocidad"
+horizontal_alignment = 2
+
+[node name="info_Abilitie" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 105.336
+offset_top = 213.385
+offset_right = 225.336
+offset_bottom = 236.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Habilidad"
+
+[node name="Abilitie" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.199
+anchor_right = 0.222
+anchor_bottom = 0.199
+offset_left = 227.336
+offset_top = 215.385
+offset_right = 347.336
+offset_bottom = 238.385
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_uxrpk")
+theme_override_font_sizes/font_size = 25
+text = "Habilidad"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 111.0
+offset_right = 456.0
+offset_bottom = 117.0
+theme = SubResource("Theme_eegxj")
+value = 50.0
+show_percentage = false

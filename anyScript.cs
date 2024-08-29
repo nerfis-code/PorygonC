@@ -3,7 +3,6 @@ using System;
 using PorygonC.Pokemons.Domain;
 using PorygonC.Pokemons.Application;
 using PorygonC.Scenes.Domain;
-using PorygonC.Scenes.Application;
 using System.IO;
 using PorygonC.Species.Domain;
 using Utf8Json;
@@ -24,11 +23,12 @@ public partial class anyScript : Node3D{
 		// GameLoop.Main(scene);
 		var player = new Trainer("Nerfis");
 		var oponent = new Trainer("Eliezer");
+
 		
 		PokemonConstructor pkc = new PokemonConstructor{};
-		player.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.PIKACHU,PokemonKey.AERODACTYL}.Select(n => pkc.Main((int)n)).ToArray());
-		oponent.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.GIRATINA,PokemonKey.POLTEAGEIST}.Select(n => pkc.Main((int)n)).ToArray());
-		SceneManager.Main(this,player,oponent);
+		player.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.PIKACHU,PokemonKey.AERODACTYL}.Select(n => pkc.Create((int)n)).ToArray());
+		oponent.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.GIRATINA,PokemonKey.POLTEAGEIST}.Select(n => pkc.Create((int)n)).ToArray());
+		SceneNodeManager.InitializeSceneNode(this,player,oponent);
 		
 
 	}

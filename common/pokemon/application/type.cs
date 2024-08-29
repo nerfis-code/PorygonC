@@ -1,9 +1,9 @@
 using PorygonC.Pokemons.Domain;
 namespace PorygonC.Pokemons.Application
 {
-    static class TypeDamageMultiplier
+    static class TypeOfTypes
     {
-        public static float Main(TypeKey attackType, TypeKey defType)
+        public static float GetDamageMultiplier(TypeKey attackType, TypeKey defType)
         {
             if (attackType == TypeKey.UNKNOWN || defType == TypeKey.UNKNOWN)
             {

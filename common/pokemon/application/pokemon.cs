@@ -9,7 +9,7 @@ namespace PorygonC.Pokemons.Application
 {
 	class PokemonConstructor
 	{
-		public Pokemon Main(PokemonKey dex = PokemonKey.BULBASAUR){
+		public Pokemon Create(PokemonKey dex = PokemonKey.BULBASAUR){
 			var a = File.ReadAllText("pokemon.json");
 			var b = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(a);
 			var pkm = new Specie(b[(int)dex]);
@@ -24,7 +24,7 @@ namespace PorygonC.Pokemons.Application
 				Key = pkm.Key
 			};
 		}
-		public Pokemon Main(int dex = 0){
+		public Pokemon Create(int dex = 0){
 			var a = File.ReadAllText("pokemon.json");
 			var b = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(a);
 			var pkm = new Specie(b[dex]);
