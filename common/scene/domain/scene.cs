@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PorygonC.Pokemons.Domain;
 
 namespace PorygonC.Scenes.Domain
@@ -6,14 +7,14 @@ namespace PorygonC.Scenes.Domain
     {
         public int Id { get; set; }
         public ushort Turn { get; set; }
-        public Pokemon[] PokemonsPlayerGroup { get; private set; }
-        public Pokemon[] PokemonsOpponentGroup { get; private set; }
+        public List<Pokemon> PokemonsPlayerGroup { get; private set; }
+        public List<Pokemon> PokemonsOpponentGroup { get; private set; }
 
-        public void AssigPlayerGroup(params Pokemon[] group)
+        public void AssigPlayerGroup(List<Pokemon> group)
         {
             PokemonsPlayerGroup = group;
         }
-        public void AssigOpponentGroup(params Pokemon[] group)
+        public void AssigOpponentGroup(List<Pokemon> group)
         {
             PokemonsOpponentGroup = group;
         }

@@ -1,63 +1,56 @@
 using System;
+using System.Linq;
 using Godot;
+using PorygonC.Pokemons.Domain;
 using PorygonC.Scenes.Infrastructure;
+using PorygonC.Trainers.Domain;
 
 public static class SceneManager
 {
-    public static void Main(Node3D node)
+    public static void Main(Node3D node,Trainer player, Trainer opponent)
     {
-        InitScene.Main();
+        InitScene.Main(player,opponent);
 		
 		Node3D scene = (Node3D)GD.Load<PackedScene>("res://game/mechanics/scene.tscn").Instantiate();
 		node.AddChild(scene);
 		scene.Position += new Vector3 (0,2,0);
 
-		foreach (var pokemon in InitScene.scene.PokemonsPlayerGroup)
+        string[] PATH = {"res://game/Pokemon/Back/", "res://game/Pokemon/Front/"};
+		Vector3[] POS = [new Vector3(-0.7f,0,0.5f), new Vector3(0.7f,0,-0.5f)];
+
+		var pokemonList = InitScene.scene.PokemonsPlayerGroup.Concat(InitScene.scene.PokemonsOpponentGroup);
+
+		foreach (var pokemon in pokemonList)
 		{
+			var value = InitScene.scene.PokemonsPlayerGroup.Contains(pokemon) ? 0 : 1;
 			var pokemonNode = (Node3D)GD.Load<PackedScene>("res://game/mechanics/pokemonNode.tscn").Instantiate();
 			scene.AddChild(pokemonNode);
-			pokemonNode.Position += new Vector3(-0.5f,0,0.5f);
-			var img = GD.Load<Texture2D>("res://game/Pokemon/Back/"+pokemon.Key.ToString()+".png");
+			pokemonNode.Position += POS[value];
+			POS[value] += new Vector3(1f,0,0);
+
 			pokemonNode.GetChild<Label3D>(2).Text = pokemon.Name;
-			BoxSize.Main(img.GetImage(),img.GetHeight(),pokemonNode.GetChild<CollisionShape3D>(1));
+			
+			var img = GD.Load<Texture2D>(PATH[value]+pokemon.Key.ToString()+".png");
 			int cap = img.GetWidth() / img.GetHeight();
 			var sprite = pokemonNode.GetChild<Sprite3D>(0);
 			sprite.Texture = img;
 			sprite.Hframes = cap;
+			BoxSize.Main(img.GetImage(),pokemonNode.GetChild<CollisionShape3D>(1));
 
 			Tween tween = node.GetTree().CreateTween().SetLoops();
 			tween.TweenProperty(sprite,"frame",cap-1,cap*0.09);
-			Callable any = Callable.From(() => {sprite.Frame = 0;});
-			tween.TweenCallback(any);
+			tween.TweenCallback(Callable.From(() => {sprite.Frame = 0;}));
 			
 		}
 
-		foreach (var pokemon in InitScene.scene.PokemonsOpponentGroup)
-		{
-			var pokemonNode = (Node3D)GD.Load<PackedScene>("res://game/mechanics/pokemonNode.tscn").Instantiate();
-			scene.AddChild(pokemonNode);
-			pokemonNode.Position += new Vector3(0.5f,0,-0.5f);
-			var img = GD.Load<Texture2D>("res://game/Pokemon/Front/"+pokemon.Key.ToString()+".png");
-			pokemonNode.GetChild<Label3D>(2).Text = pokemon.Name;
-			BoxSize.Main(img.GetImage(),img.GetHeight(),pokemonNode.GetChild<CollisionShape3D>(1));
-			int cap = img.GetWidth() / img.GetHeight();
-			var sprite = pokemonNode.GetChild<Sprite3D>(0);
-			sprite.Texture = img;
-			sprite.Hframes = cap;
-
-			Tween tween = node.GetTree().CreateTween().SetLoops();
-			tween.TweenProperty(sprite,"frame",cap-1,cap*0.09);
-			Callable any = Callable.From(() => {sprite.Frame = 0;});
-			tween.TweenCallback(any);
-			
-		}
     }
 }
 
 public static class BoxSize
 {
-	public static void Main(Image image,int box,CollisionShape3D collisionShape)
+	public static void Main(Image image,CollisionShape3D collisionShape)
 	{
+		int box = image.GetHeight();
 		int minX = box;
 		int minY = box;
 		int maxX = 0;

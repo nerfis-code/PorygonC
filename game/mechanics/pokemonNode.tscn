@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b52ncwyyup8qy"]
+[gd_scene load_steps=5 format=3 uid="uid://b52ncwyyup8qy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4msu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_byl5r"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rr6f"]
+bg_color = Color(0.189847, 0.700655, 0.489799, 1)
+
+[sub_resource type="Theme" id="Theme_3kkld"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_6rr6f")
 
 [node name="PokemonNode" type="RigidBody3D"]
 
@@ -15,5 +24,32 @@ shape = SubResource("BoxShape3D_b4msu")
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673352, 0)
 text = "Pokemon"
-font_size = 36
+font_size = 15
 width = 300.0
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532081, 0)
+texture = SubResource("ViewportTexture_byl5r")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(80, 5)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 40.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3kkld")
+value = 100.0
+show_percentage = false

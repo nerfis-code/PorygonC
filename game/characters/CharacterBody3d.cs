@@ -1,4 +1,5 @@
 using Godot;
+using PorygonC.Trainers.Domain;
 using System;
 
 public partial class CharacterBody3d : CharacterBody3D
@@ -6,6 +7,7 @@ public partial class CharacterBody3d : CharacterBody3D
 	public const float Speed = 1.0f;
 	public const float JumpVelocity = 4.5f;
 	public MachineState State;
+	public Trainer Trainer;
 
 	public override void _Ready()
 	{

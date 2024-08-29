@@ -1,7 +1,7 @@
 
 namespace PorygonC.Pokemons.Domain
 {
-    class Pokemon
+    public class Pokemon
     {
         public string Name { get; set; }
         public PokemonKey Key { get; set; }
@@ -15,9 +15,9 @@ namespace PorygonC.Pokemons.Domain
 
 
 
-    enum PokemonKey
+    public enum PokemonKey
     {
-        MISSINGNO,
+        MISSINGNO = -1,
         BULBASAUR,
         IVYSAUR,
         VENUSAUR,

@@ -10,6 +10,8 @@ using Utf8Json;
 
 using System.Collections.Generic;
 using PorygonC.Scenes.Infrastructure;
+using PorygonC.Trainers.Domain;
+using System.Linq;
 public partial class anyScript : Node3D{
 	public override void _Ready(){
 		// var any = new PokemonConstructor{};
@@ -20,7 +22,13 @@ public partial class anyScript : Node3D{
 		// scene.AssigPlayerGroup([alig,alig2]);
 		// scene.AssigOpponentGroup([opp]);
 		// GameLoop.Main(scene);
-		SceneManager.Main(this);
+		var player = new Trainer("Nerfis");
+		var oponent = new Trainer("Eliezer");
+		
+		PokemonConstructor pkc = new PokemonConstructor{};
+		player.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.PIKACHU,PokemonKey.AERODACTYL}.Select(n => pkc.Main((int)n)).ToArray());
+		oponent.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.GIRATINA,PokemonKey.POLTEAGEIST}.Select(n => pkc.Main((int)n)).ToArray());
+		SceneManager.Main(this,player,oponent);
 		
 
 	}

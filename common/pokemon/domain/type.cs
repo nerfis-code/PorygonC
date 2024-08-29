@@ -2,7 +2,7 @@ using System;
 
 namespace PorygonC.Pokemons.Domain
 {
-    enum TypeKey
+    public enum TypeKey
     {
         UNKNOWN,
         NORMAL,

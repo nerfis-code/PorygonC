@@ -1,0 +1,158 @@
+[gd_scene load_steps=21 format=3 uid="uid://06du11ubqtbe"]
+
+[ext_resource type="Script" path="res://game/characters/CharacterBody3d.cs" id="1_p3tyk"]
+[ext_resource type="Texture2D" uid="uid://dk4d66f0rrxq0" path="res://game/characters/trainer.png" id="2_1qcc4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8whe"]
+size = Vector3(0.3, 0.4, 0.1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldjf4"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3fr3"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(32, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0f0e"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(64, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh2fo"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(96, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i1dj"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcpho"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3ahl"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yddm"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fay2i"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v675i"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(32, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fovro"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(64, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22m4n"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(96, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tvxy"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2sko"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(32, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b81xs"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(64, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkder"]
+atlas = ExtResource("2_1qcc4")
+region = Rect2(96, 96, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5kkb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldjf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3fr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0f0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh2fo")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i1dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcpho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3ahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yddm")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fay2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v675i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fovro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22m4n")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tvxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2sko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b81xs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkder")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44204, 1.58312, 0)
+script = ExtResource("1_p3tyk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00852412, 0)
+shape = SubResource("BoxShape3D_k8whe")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_e5kkb")
+animation = &"back"
+frame = 2
+frame_progress = 0.993357
