@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace PorygonC.Pokemons.Application
 		public Pokemon Create(PokemonKey dex = PokemonKey.BULBASAUR){
 			var a = File.ReadAllText("pokemon.json");
 			var b = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(a);
+			var r = new Random{};
 			var pkm = new Specie(b[(int)dex]);
 			return new Pokemon
 			{
@@ -21,12 +23,14 @@ namespace PorygonC.Pokemons.Application
 				Level = 50,
 				Stats = pkm.BaseStats.Select(n => (ushort)n).ToArray(),
 				Ps = pkm.BaseStats[0],
-				Key = pkm.Key
+				Key = pkm.Key,
+				Moves = new int[] {0,0,0,0}.Select(n => (Move)r.Next(0,833)).ToList()
 			};
 		}
 		public Pokemon Create(int dex = 0){
 			var a = File.ReadAllText("pokemon.json");
 			var b = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(a);
+			var r = new Random{};
 			var pkm = new Specie(b[dex]);
 			return new Pokemon
 			{
@@ -36,7 +40,8 @@ namespace PorygonC.Pokemons.Application
 				Level = 50,
 				Stats = pkm.BaseStats.Select(n => (ushort)n).ToArray(),
 				Ps = pkm.BaseStats[0],
-				Key = pkm.Key
+				Key = pkm.Key,
+				Moves = new int[] {0,0,0,0}.Select(n => (Move)r.Next(0,833)).ToList()
 			};
 		}
 	} 

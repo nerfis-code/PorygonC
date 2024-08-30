@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boil4lhlncj4r"
-path="res://.godot/imported/bg_allstats.png-a692934bfed4119c3cf42a3b189f12c5.ctex"
+path="res://.godot/imported/bg_allstats.png-cb4b2266eb78069d79357caddb136294.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/mechanics/Menus/bg_allstats.png"
-dest_files=["res://.godot/imported/bg_allstats.png-a692934bfed4119c3cf42a3b189f12c5.ctex"]
+source_file="res://Game/Mechanics/Menus/bg_allstats.png"
+dest_files=["res://.godot/imported/bg_allstats.png-cb4b2266eb78069d79357caddb136294.ctex"]
 
 [params]
 

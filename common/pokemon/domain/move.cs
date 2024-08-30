@@ -1,7 +1,8 @@
 namespace PorygonC.Pokemons.Domain
 {
-    enum Move
+    public enum Move
     {
+        NONE = -1,
         MEGAHORN,
         ATTACKORDER,
         BUGBUZZ,

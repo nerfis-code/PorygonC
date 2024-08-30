@@ -1,7 +1,10 @@
 
+using System.Collections.Generic;
+using Godot;
+
 namespace PorygonC.Pokemons.Domain
 {
-    public class Pokemon
+    public partial class Pokemon
     {
         public string Name { get; set; }
         public PokemonKey Key { get; set; }
@@ -10,9 +13,9 @@ namespace PorygonC.Pokemons.Domain
         public TypeKey Type2 { get; set; }
         public byte Level { get; set; }
         public ushort[] Stats { get; set; }
+        public Move CurrMove { get; set; }
+        public List<Move> Moves { get; set; }
     }
-
-
 
 
     public enum PokemonKey

@@ -2,10 +2,10 @@ using Godot;
 using PorygonC.Pokemons.Domain;
 using System;
 
-public partial class PokemonNode : RigidBody3D
+public partial class PokemonNode : RigidBody3D 
 {
 	// Called when the node enters the scene tree for the first time.
-	public Pokemon _Pokemon;
+	public Pokemon Identity;
 	public override void _Ready()
 	{
 	}

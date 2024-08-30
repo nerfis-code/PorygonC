@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn42yretedyij"]
+
+[ext_resource type="Texture2D" uid="uid://chh6h8gcu5naf" path="res://Game/Mechanics/Menus/overlay_fight.png" id="1_o7h14"]
+[ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="2_vildd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqcjd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_3m2h1"]
+Button/constants/outline_size = 8
+Button/styles/normal = SubResource("StyleBoxFlat_jqcjd")
+
+[node name="OverlayFight" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OverlayFight" type="Sprite2D" parent="."]
+position = Vector2(850, 569)
+texture = ExtResource("1_o7h14")
+
+[node name="Move1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 527.0
+offset_right = 788.0
+offset_bottom = 570.0
+theme = SubResource("Theme_3m2h1")
+theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_font_sizes/font_size = 30
+text = "Ataque"
+
+[node name="Move2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 789.0
+offset_top = 528.0
+offset_right = 977.0
+offset_bottom = 571.0
+theme = SubResource("Theme_3m2h1")
+theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_font_sizes/font_size = 30
+text = "Ataque"
+
+[node name="Move3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 570.0
+offset_right = 788.0
+offset_bottom = 613.0
+theme = SubResource("Theme_3m2h1")
+theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_font_sizes/font_size = 30
+text = "Ataque"
+
+[node name="Move4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 788.0
+offset_top = 570.0
+offset_right = 976.0
+offset_bottom = 613.0
+theme = SubResource("Theme_3m2h1")
+theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_font_sizes/font_size = 30
+text = "Ataque"

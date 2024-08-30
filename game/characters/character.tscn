@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://06du11ubqtbe"]
+[gd_scene load_steps=22 format=3 uid="uid://06du11ubqtbe"]
 
 [ext_resource type="Script" path="res://Game/Characters/Character.cs" id="1_3q8xs"]
 [ext_resource type="Texture2D" uid="uid://dk4d66f0rrxq0" path="res://Game/Characters/trainer.png" id="2_1qcc4"]
@@ -141,6 +141,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4otqy"]
+size = Vector3(0.8, 0.3, 0.4)
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44204, 1.58312, 0)
 script = ExtResource("1_3q8xs")
@@ -156,3 +159,9 @@ sprite_frames = SubResource("SpriteFrames_e5kkb")
 animation = &"back"
 frame = 2
 frame_progress = 0.993357
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.217673)
+shape = SubResource("BoxShape3D_4otqy")

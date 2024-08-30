@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hkpxhr4tmmwr"
-path="res://.godot/imported/PIKACHU.png-e7867ebd8572ed0bb71d48193ef1c96b.ctex"
+uid="uid://chh6h8gcu5naf"
+path.s3tc="res://.godot/imported/overlay_fight.png-23e1cab028257afb6075b04cf08e1b91.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Game/Graphics/Pokemon/Back/PIKACHU.png"
-dest_files=["res://.godot/imported/PIKACHU.png-e7867ebd8572ed0bb71d48193ef1c96b.ctex"]
+source_file="res://Game/Mechanics/Menus/overlay_fight.png"
+dest_files=["res://.godot/imported/overlay_fight.png-23e1cab028257afb6075b04cf08e1b91.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1k3yab7nmmkn"
-path="res://.godot/imported/bg_skills.png-6d142fc7a3cceb16eb8a6f48dce478cc.ctex"
+path="res://.godot/imported/bg_skills.png-c13f452c194537cb90ff6b6b1f8447ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/mechanics/Menus/bg_skills.png"
-dest_files=["res://.godot/imported/bg_skills.png-6d142fc7a3cceb16eb8a6f48dce478cc.ctex"]
+source_file="res://Game/Mechanics/Menus/bg_skills.png"
+dest_files=["res://.godot/imported/bg_skills.png-c13f452c194537cb90ff6b6b1f8447ae.ctex"]
 
 [params]
 

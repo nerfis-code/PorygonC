@@ -8,22 +8,22 @@ public partial class Character : CharacterBody3D
 	public const float JumpVelocity = 4.5f;
 	public MachineState State;
 	public Trainer Trainer;
+	private Area3D Observer;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		State = new MachineState(GetNode<AnimatedSprite3D>("AnimatedSprite3D"));
+		Observer  = GetNode<Area3D>("Area3D");
 		
 	}
 	private PokemonNode CheckCollisions()
 	{
-		int collisionCount = GetSlideCollisionCount();
-		for (int i = 0; i < collisionCount; i++)
-		{
-			KinematicCollision3D collision = GetSlideCollision(i);
-			Node3D collider = collision.GetCollider() as Node3D;
 
-			if (collider != null && collider is PokemonNode) return (PokemonNode)collider;
+		var a  = Observer.GetOverlappingBodies();
+		foreach (var item in a)
+		{
+			if(item is PokemonNode) return (PokemonNode)item;
 		}
 		return null;
 	}
@@ -34,12 +34,11 @@ public partial class Character : CharacterBody3D
 			if (GetParent().HasNode("bg_skills"))
 			{
 				var node = GetParent().GetNode<bg_skills>("bg_skills");
-				if (node._Pokemon == Touch._Pokemon) return ;
-				GetParent().RemoveChild(node);
+				if (node.Identity == Touch.Identity) return ;
 				node.QueueFree();
 			}
-			var Sumary = (bg_skills)GD.Load<PackedScene>("res://game/mechanics/menus/bg_skills.tscn").Instantiate();
-			Sumary._Pokemon = Touch._Pokemon;
+			var Sumary = (bg_skills)GD.Load<PackedScene>("res://Game/Mechanics/Menus/bg_skills.tscn").Instantiate();
+			Sumary.Identity = Touch.Identity;
 			GetParent().AddChild(Sumary);
 			
 		}
@@ -48,24 +47,28 @@ public partial class Character : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 		
-		Sumary();
+		
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
 		}
+		if (Input.IsActionJustPressed("ui_accept")){
+			Sumary();
+		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		/**if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
-		}
+		}**/
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		AnimatedSprite3D animatedSprite = GetNode<AnimatedSprite3D>("AnimatedSprite3D");
+		//AnimatedSprite3D animatedSprite = GetNode<AnimatedSprite3D>("AnimatedSprite3D");
+		
 		if (direction != Vector3.Zero)
 		{
 			velocity.X = direction.X * Speed;
@@ -73,13 +76,25 @@ public partial class Character : CharacterBody3D
 
 			if (direction.Z != 0)
 			{
-				if (direction.Z > 0) State.Run("front");
-				else State.Run("back");
+				if (direction.Z > 0) {
+					State.Run("front");
+					Observer.Rotation = new Vector3(0,180,0);
+				}
+				else {
+					State.Run("back");
+					Observer.Rotation = new Vector3(0,0,0);	
+				}
 			}
 			else
 			{
-				if (direction.X > 0) State.Run("right");
-				else State.Run("left");
+				if (direction.X > 0) {
+					State.Run("right");
+					Observer.Rotation = new Vector3(0,-90,0);	
+				}
+				else {
+					State.Run("left");
+					Observer.Rotation = new Vector3(0,90,0);
+				}
 			}
 			
 		}

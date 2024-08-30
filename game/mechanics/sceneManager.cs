@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using PorygonC.Pokemons.Domain;
+using PorygonC.Scenes.Domain;
 using PorygonC.Scenes.Infrastructure;
 using PorygonC.Trainers.Domain;
 
@@ -11,7 +13,7 @@ public static class SceneNodeManager
     {
         SceneManager.InitializeScene(player,opponent);
 		
-		Node3D scene = (Node3D)GD.Load<PackedScene>("res://Game/mechanics/scene.tscn").Instantiate();
+		Node3D scene = (Node3D)GD.Load<PackedScene>("res://Game/Mechanics/scene.tscn").Instantiate();
 		node.AddChild(scene);
 		scene.Position += new Vector3 (0,2,0);
 
@@ -22,22 +24,64 @@ public static class SceneNodeManager
 		foreach (var pokemon in pokemonList)
 		{
 			var value = SceneManager.Scene.PokemonsPlayerGroup.Contains(pokemon) ? 0 : 1;
-			var pokemonNode = (PokemonNode)GD.Load<PackedScene>("res://Game/mechanics/pokemonNode.tscn").Instantiate();
-			pokemonNode._Pokemon = pokemon;
+			var pokemonNode = (PokemonNode)GD.Load<PackedScene>("res://Game/Mechanics/Pokemon/pokemonNode.tscn").Instantiate();
+			pokemonNode.Identity = pokemon;
 			scene.AddChild(pokemonNode);
 			pokemonNode.Position += POS[value];
 			POS[value] += new Vector3(1f,0,0);
 
 			pokemonNode.GetChild<Label3D>(2).Text = pokemon.Name;
 			
-			var img = GD.Load<Texture2D>(PATH[value]+pokemon.Key.ToString()+".png");
-			var sprite = pokemonNode.GetChild<Sprite3D>(0);
-			sprite.Texture = img;
-			SpriteHelper.AnimatedSprite(sprite);
+			
+			var sprite = pokemonNode.GetChild<PokemonSprite3D>(0);
+			sprite.Assign(pokemon.Key, value == 0 ? Orientation.BACK : Orientation.FRONT);
 			
 			CollisionShapeHelper.AdjustCollisionShapeToSprite(pokemonNode);
 		}
+		SceneUi.Load(SceneManager.Scene,scene);
     }
+}
+
+public static class SceneUi
+{
+	public static void Load(Scene scene, Node3D node)
+	{
+		Control ilast = null;
+		Control iinit = null;
+		foreach (var pkm in scene.PokemonsPlayerGroup)
+		{
+			Control menu = (Control)GD.Load<PackedScene>("res://Game/Mechanics/Menus/overlay_fight.tscn").Instantiate();
+			int @in = 0;
+			foreach ( var child in menu.GetChildren()){
+				if (!(child is Button)) continue;
+				var button = (Button)child;
+				var n = @in;
+				button.Text = pkm.Moves[n].ToString();
+				var last = ilast;
+				if(last == null){
+					iinit = menu;
+					button.Pressed += () => {
+						pkm.CurrMove = pkm.Moves[n];
+						scene.InitializeTurn();
+						menu.Visible = false;
+					};	
+				}
+				else{
+					last.Visible = false;
+					button.Pressed += () => {
+						pkm.CurrMove = pkm.Moves[n];
+						last.Visible = true;
+						menu.Visible = false;
+					};	
+				}				
+				@in++;
+			}
+			ilast = menu;
+			node.AddChild(menu);
+			
+		}
+
+	}
 }
 public static class SpriteHelper
 {
@@ -63,7 +107,7 @@ public static class CollisionShapeHelper
 {
 	public static void AdjustCollisionShapeToSprite(Node3D node)
 	{	
-		var image = node.GetNode<Sprite3D>("Sprite3D").Texture.GetImage();
+		var image = node.GetNode<Sprite3D>("PokemonSprite3D").Texture.GetImage();
 		int box = image.GetHeight();
 		int minX = box;
 		int minY = box;

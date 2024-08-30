@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://anyScript.cs" id="1_bylyx"]
 [ext_resource type="PackedScene" uid="uid://06du11ubqtbe" path="res://Game/Characters/character.tscn" id="3_g3tyb"]
-[ext_resource type="PackedScene" uid="uid://dn6i5cecilduf" path="res://Game/mechanics/Menus/bg_skills.tscn" id="4_rgn0k"]
+[ext_resource type="PackedScene" uid="uid://dn6i5cecilduf" path="res://Game/Mechanics/Menus/bg_skills.tscn" id="4_rgn0k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8sxu6"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
