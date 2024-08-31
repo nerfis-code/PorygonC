@@ -26,8 +26,8 @@ public partial class anyScript : Node3D{
 
 		
 		PokemonConstructor pkc = new PokemonConstructor{};
-		player.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.PIKACHU,PokemonKey.AERODACTYL}.Select(n => pkc.Create((int)n)).ToArray());
-		oponent.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.GIRATINA,PokemonKey.POLTEAGEIST}.Select(n => pkc.Create((int)n)).ToArray());
+		player.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.PIKACHU,PokemonKey.AERODACTYL,PokemonKey.BULBASAUR}.Select(n => pkc.Create((int)n)).ToArray());
+		oponent.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.GIRATINA,PokemonKey.POLTEAGEIST,PokemonKey.MEW}.Select(n => pkc.Create((int)n)).ToArray());
 		SceneNodeManager.InitializeSceneNode(this,player,oponent);
 		
 

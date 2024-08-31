@@ -7,6 +7,8 @@ public partial class bg_skills : Control
 {
 	// Called when the node enters the scene tree for the first time.
 	public Pokemon Identity;
+	private Action action;
+	
 	const string PATH = "res://Game/Graphics/Pokemon/Front/";
 	public override void _Ready()
 	{
@@ -21,15 +23,26 @@ public partial class bg_skills : Control
 
 		//info
 		GetNode<Label>("Name").Text = Identity.Name;
-		GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
+		GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
+		action = () => {
+			GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
+			AnimatedProgressBar.Animate(GetNode<ProgressBar>("HP"),Identity.Ps);
+		};
+		Identity.ReceivedDamage += action;
 		//#18C020
-		GetNode<ProgressBar>("ProgressBar").MaxValue = Identity.Stats[0];
-		GetNode<ProgressBar>("ProgressBar").Value = Identity.Ps;
-		GetNode<Label>("Attk").Text = Identity.Stats[1].ToString();
-		GetNode<Label>("Def").Text = Identity.Stats[2].ToString();
-		GetNode<Label>("SpAttk").Text = Identity.Stats[4].ToString();
-		GetNode<Label>("SpDef").Text = Identity.Stats[5].ToString();
-		GetNode<Label>("Spd").Text = Identity.Stats[3].ToString();
+		GetNode<ProgressBar>("HP").MaxValue = Identity.Stats[0];
+		GetNode<ProgressBar>("HP").Value = Identity.Ps;
+		GetNode("Stats").GetNode<Label>("Attk").Text = Identity.Stats[1].ToString();
+		GetNode("Stats").GetNode<Label>("Def").Text = Identity.Stats[2].ToString();
+		GetNode("Stats").GetNode<Label>("SpAttk").Text = Identity.Stats[4].ToString();
+		GetNode("Stats").GetNode<Label>("SpDef").Text = Identity.Stats[5].ToString();
+		GetNode("Stats").GetNode<Label>("Spd").Text = Identity.Stats[3].ToString();
+	}
+
+	public override void _ExitTree()
+	{
+		Identity.ReceivedDamage -= action;
+		base._ExitTree();
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

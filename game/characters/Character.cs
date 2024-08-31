@@ -35,6 +35,7 @@ public partial class Character : CharacterBody3D
 			{
 				var node = GetParent().GetNode<bg_skills>("bg_skills");
 				if (node.Identity == Touch.Identity) return ;
+				GetParent().RemoveChild(node);
 				node.QueueFree();
 			}
 			var Sumary = (bg_skills)GD.Load<PackedScene>("res://Game/Mechanics/Menus/bg_skills.tscn").Instantiate();
@@ -52,6 +53,15 @@ public partial class Character : CharacterBody3D
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
+		}
+
+		if (Input.IsActionJustPressed("ui_exit")){
+			if (GetParent().HasNode("bg_skills"))
+			{
+				var node = GetParent().GetNode<bg_skills>("bg_skills");
+				GetParent().RemoveChild(node);
+				node.QueueFree();
+			}
 		}
 		if (Input.IsActionJustPressed("ui_accept")){
 			Sumary();

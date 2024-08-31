@@ -26,12 +26,19 @@ namespace PorygonC.Scenes.Domain
         public void InitializeTurn()
         {
             Ia();
+            foreach (var item in PokemonsPlayerGroup)
+            {
+                if (item.CurrMove == Move.NONE){
+                    GD.Print("Pendejo");
+                    return;
+                }
+            }
             Turn++;
             var order = Priority();
             for(int i=0;i<order.Length;i++){
 
-                GD.Print(order[i].Name + "ha realizado " + order[i].CurrMove.ToString());
-                GD.Print(order[i].Name + "ha ataquado a " + order[(i+1) % order.Length].Name);
+                GD.Print(order[i].Name + " ha realizado " + order[i].CurrMove.ToString());
+                GD.Print(order[i].Name + " ha ataquado a " + order[(i+1) % order.Length].Name);
                 order[(i+1) % order.Length].Ps -= 10;
                 order[i].CurrMove = Move.NONE;
             }

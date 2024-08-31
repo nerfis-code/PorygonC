@@ -22,45 +22,47 @@ grow_vertical = 2
 position = Vector2(850, 569)
 texture = ExtResource("1_o7h14")
 
-[node name="Move1" type="Button" parent="."]
+[node name="Action" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 527.0
-offset_right = 788.0
-offset_bottom = 570.0
+offset_left = 610.0
+offset_top = 536.0
+offset_right = 971.0
+offset_bottom = 612.0
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 11
+columns = 2
+
+[node name="Move1" type="Button" parent="Action"]
+clip_contents = true
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
 theme_override_font_sizes/font_size = 30
 text = "Ataque"
 
-[node name="Move2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 789.0
-offset_top = 528.0
-offset_right = 977.0
-offset_bottom = 571.0
+[node name="Move2" type="Button" parent="Action"]
+clip_contents = true
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
 theme_override_font_sizes/font_size = 30
 text = "Ataque"
 
-[node name="Move3" type="Button" parent="."]
-layout_mode = 0
-offset_left = 600.0
-offset_top = 570.0
-offset_right = 788.0
-offset_bottom = 613.0
+[node name="Move3" type="Button" parent="Action"]
+clip_contents = true
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
 theme_override_font_sizes/font_size = 30
 text = "Ataque"
 
-[node name="Move4" type="Button" parent="."]
-layout_mode = 0
-offset_left = 788.0
-offset_top = 570.0
-offset_right = 976.0
-offset_bottom = 613.0
+[node name="Move4" type="Button" parent="Action"]
+clip_contents = true
+custom_minimum_size = Vector2(165, 30)
+layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
 theme_override_font_sizes/font_size = 30

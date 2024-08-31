@@ -19,7 +19,9 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_6rr6f")
 script = ExtResource("1_e68k3")
 
 [node name="PokemonSprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.999974, -0.00691363, 0.0021002, 0.00691361, 0.999976, 1.95809e-05, -0.00210029, -5.0594e-06, 0.999998, 0, 0, 0)
 layers = 2
+shaded = true
 alpha_cut = 2
 texture_filter = 0
 script = ExtResource("2_qari3")
@@ -29,7 +31,7 @@ shape = SubResource("BoxShape3D_b4msu")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673352, 0)
-texture_filter = 0
+texture_filter = 2
 text = "Pokemon"
 font = ExtResource("2_vtvca")
 font_size = 15
