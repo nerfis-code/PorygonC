@@ -15,11 +15,9 @@ namespace PorygonC.Scenes.Domain
         public List<Pokemon> PokemonsPlayerGroup { get; set; }
         public List<Pokemon> PokemonsOpponentGroup { get; set; }
 
-        public delegate Task ActionHandler(Move move, Pokemon user);
-        public event ActionHandler OnAction;
 
-        public delegate Task receivedHandler(Move move, Pokemon target , short received);
-        public event receivedHandler OnReceived;
+        public event Action<Scene,List<Pokemon>,List<Pokemon>> OnAction;
+        public event Action<Scene,List<Pokemon>,List<Pokemon>,Pokemon,short> OnReceived;
 
         public event Action EndTurn;
 
@@ -32,7 +30,7 @@ namespace PorygonC.Scenes.Domain
             PokemonsOpponentGroup = group;
         }
 
-        public async void InitializeTurn()
+        public async Task InitializeTurn()
         {
             Ia();
             foreach (var item in PokemonsPlayerGroup)
@@ -44,23 +42,16 @@ namespace PorygonC.Scenes.Domain
             }
             Turn++;
             var order = Priority();
-            for(int i=0;i<order.Length;i++){
-                if (order[i].IsDefeated) continue;
-                await CarryOutAttack(order[i].CurrMove,order[i],[order[(i+1) % order.Length]]);
-                order[i].CurrMove = null;
+            foreach (var item in order)
+            {
+                await item.Attk([item]);
             }
+
             EndTurn?.Invoke();
             EndTurn = null;
+            
         }
-        private async Task CarryOutAttack(Move move, Pokemon user, List<Pokemon> targets)
-        {
-            await OnAction?.Invoke(move, user);
-            foreach (var target in targets)
-            {
-                target.Ps -= move.Power;
-                await OnReceived?.Invoke(move, target, move.Power);
-            }
-        }
+
         private void Ia()
         {
             var r = new Random {};
@@ -74,10 +65,10 @@ namespace PorygonC.Scenes.Domain
         {
 
         }
-        private Pokemon[] Priority()
+        private List<Pokemon> Priority()
         {
-            Pokemon[] pokemonList = PokemonsPlayerGroup.Concat(PokemonsOpponentGroup).ToArray();
-            return pokemonList.OrderByDescending(n => n.Stats[3]).ToArray();
+            List<Pokemon> pokemonList = PokemonsPlayerGroup.Concat(PokemonsOpponentGroup).ToList();
+            return pokemonList.OrderByDescending(n => n.Stats[3]).ToList();
         }
     }
 

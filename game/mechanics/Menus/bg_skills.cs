@@ -2,12 +2,13 @@ using Godot;
 using PorygonC.Pokemons.Application;
 using PorygonC.Pokemons.Domain;
 using System;
+using System.Threading.Tasks;
 
 public partial class bg_skills : Control
 {
 	// Called when the node enters the scene tree for the first time.
 	public Pokemon Identity;
-	private Action action;
+	private Task action;
 	
 	const string PATH = "res://Game/Graphics/Pokemon/Front/";
 	public override void _Ready()
@@ -24,11 +25,12 @@ public partial class bg_skills : Control
 		//info
 		GetNode<Label>("Name").Text = Identity.Name;
 		GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
-		action = () => {
+		async Task task(){
 			GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
-			AnimatedProgressBar.Animate(GetNode<ProgressBar>("HP"),Identity.Ps);
+			await AnimatedProgressBar.Animate(GetNode<ProgressBar>("HP"),Identity.Ps);
 		};
-		Identity.ReceivedDamage += action;
+		action = task();
+		Identity.Received += task;
 		//#18C020
 		GetNode<ProgressBar>("HP").MaxValue = Identity.Stats[0];
 		GetNode<ProgressBar>("HP").Value = Identity.Ps;
@@ -41,7 +43,11 @@ public partial class bg_skills : Control
 
 	public override void _ExitTree()
 	{
-		Identity.ReceivedDamage -= action;
+		async Task task(){
+			GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
+			await AnimatedProgressBar.Animate(GetNode<ProgressBar>("HP"),Identity.Ps);
+		};
+		Identity.Received -= task;
 		base._ExitTree();
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

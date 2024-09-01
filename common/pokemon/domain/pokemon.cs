@@ -1,8 +1,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 using PorygonC.Moves.Domain;
+using PorygonC.Scenes.Domain;
 
 namespace PorygonC.Pokemons.Domain
 {
@@ -10,15 +12,7 @@ namespace PorygonC.Pokemons.Domain
 	{
 		public string Name { get; set; }
 		public PokemonKey Key { get; set; }
-		private short _Ps { get; set;}
-		public short Ps { 
-			get => _Ps;
-			set{
-				_Ps = Math.Max((short)0,value);
-				ReceivedDamage?.Invoke();
-				if(Ps == 0) Defeated?.Invoke();
-			}
-		}
+		public short Ps { get; set; }
 		public TypeKey Type1 { get; set; }
 		public TypeKey Type2 { get; set; }
 		public byte Level { get; set; }
@@ -26,8 +20,26 @@ namespace PorygonC.Pokemons.Domain
 		public Move CurrMove { get; set; }
 		public List<Move> Moves { get; set; }
 		public bool IsDefeated { get; set; }
-		public event Action Defeated;
-		public event Action ReceivedDamage;
+		public delegate Task task();
+		public event task Defeated;
+		public event task Received;
+		public delegate Task _Info(string txt);
+		public event _Info Send;
+
+		public async Task Take(short received){
+			Ps = (short)Math.Max(0,Ps -received);
+			await Received?.Invoke();
+			await Send?.Invoke(Name + " ha recibido " + received + " de damage ");
+			//if(Ps == 0) await Defeated?.Invoke();
+		}
+
+		public async Task Attk(List<Pokemon> targets){
+			await Send?.Invoke(Name + " ha realizado el movimiento " + CurrMove.Name);
+			foreach (var target in targets)
+			{
+				await target.Take(CurrMove.Power);
+			}
+		}
 	}
 
 

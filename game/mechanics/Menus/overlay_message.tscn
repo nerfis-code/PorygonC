@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://6df24yblbbgh"]
+[gd_scene load_steps=4 format=3 uid="uid://6df24yblbbgh"]
 
+[ext_resource type="Script" path="res://Game/Mechanics/Menus/OverlayMessage.cs" id="1_qos7r"]
 [ext_resource type="Texture2D" uid="uid://bv883biihtjxq" path="res://Game/Graphics/UI/Battle/overlay_message.png" id="1_shtqv"]
 [ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="2_vvqwd"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qos7r")
 
 [node name="OverlayMessage" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -26,4 +28,4 @@ offset_bottom = 606.0
 theme_override_colors/default_color = Color(0.309385, 0.309385, 0.309385, 1)
 theme_override_constants/line_separation = 12
 theme_override_fonts/normal_font = ExtResource("2_vvqwd")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 25

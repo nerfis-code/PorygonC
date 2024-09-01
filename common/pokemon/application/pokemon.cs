@@ -28,7 +28,6 @@ namespace PorygonC.Pokemons.Application
 				Moves = new int[] {0,0,0,0}.Select(n => new Move((MoveKey)r.Next(0,833))).ToList(),
 				IsDefeated = false
 			};
-			res.Defeated += ()=> res.IsDefeated = true;
 			return res;
 		}
 		public Pokemon Create(int dex = 0){
