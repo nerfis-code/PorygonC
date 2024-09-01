@@ -1,8 +1,10 @@
 using System;
 
-namespace PorygonC.Pokemons.Domain
+namespace PorygonC.Domain
 {
-    public enum TypeKey
+    using TypeData = System.Type;
+
+    public enum Type
     {
         UNKNOWN,
         NORMAL,

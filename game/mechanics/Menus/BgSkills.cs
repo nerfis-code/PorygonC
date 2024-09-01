@@ -1,10 +1,10 @@
 using Godot;
-using PorygonC.Pokemons.Application;
-using PorygonC.Pokemons.Domain;
+using PorygonC.Application;
+using PorygonC.Domain;
 using System;
 using System.Threading.Tasks;
 
-public partial class bg_skills : Control
+public partial class BgSkills : Control
 {
 	// Called when the node enters the scene tree for the first time.
 	public Pokemon Identity;

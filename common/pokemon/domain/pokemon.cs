@@ -1,20 +1,18 @@
-
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
-using PorygonC.Moves.Domain;
-using PorygonC.Scenes.Domain;
 
-namespace PorygonC.Pokemons.Domain
+
+namespace PorygonC.Domain
 {
 	public partial class Pokemon
 	{
 		public string Name { get; set; }
 		public PokemonKey Key { get; set; }
 		public short Ps { get; set; }
-		public TypeKey Type1 { get; set; }
-		public TypeKey Type2 { get; set; }
+		public Type Type1 { get; set; }
+		public Type Type2 { get; set; }
 		public byte Level { get; set; }
 		public ushort[] Stats { get; set; }
 		public Move CurrMove { get; set; }

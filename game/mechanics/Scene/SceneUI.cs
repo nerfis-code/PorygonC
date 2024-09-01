@@ -1,5 +1,5 @@
 using Godot;
-using PorygonC.Scenes.Domain;
+using PorygonC.Domain;
 
 public static class SceneUi
 {
@@ -7,7 +7,7 @@ public static class SceneUi
     {
         if (index >= scene.PokemonsPlayerGroup.Count){
 
-            var existingOverlay = node.GetNode("overlay_fight");
+            var existingOverlay = node.GetNode("OverlayFight");
             node.RemoveChild(existingOverlay);
             existingOverlay.QueueFree();
 
@@ -17,8 +17,8 @@ public static class SceneUi
         }
         var pkm = scene.PokemonsPlayerGroup[index];
 
-        Control menu = (Control)GD.Load<PackedScene>("res://Game/Mechanics/Menus/overlay_fight.tscn").Instantiate();
-        menu.Name = "overlay_fight";
+        Control menu = (Control)GD.Load<PackedScene>("res://Game/Mechanics/Menus/OverlayFight.tscn").Instantiate();
+        menu.Name = "OverlayFight";
         
         int n = 0;
         foreach (Button button in menu.GetNode("Action").GetChildren())
@@ -33,10 +33,10 @@ public static class SceneUi
             n++;
         }
 
-        // Verificar si el nodo "overlay_fight" ya existe y eliminarlo adecuadamente
-        if (node.HasNode("overlay_fight"))
+        // Verificar si el nodo "OverlayFight" ya existe y eliminarlo adecuadamente
+        if (node.HasNode("OverlayFight"))
         {
-            var existingOverlay = node.GetNode("overlay_fight");
+            var existingOverlay = node.GetNode("OverlayFight");
             node.RemoveChild(existingOverlay);
             existingOverlay.QueueFree();
         }

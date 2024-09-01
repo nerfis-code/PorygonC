@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using PorygonC.Pokemons.Domain;
 using Utf8Json;
-namespace PorygonC.Moves.Domain
+
+namespace PorygonC.Domain
 {
     public class Move{
         public MoveKey Key { set; get; }
         public string Name { set; get; }
-        public TypeKey Type { set; get; }
+        public Type Type { set; get; }
         public byte Power { set; get; }
         public byte Accuracy { set; get; }
         public byte TotalPP { set; get; }
@@ -20,12 +20,12 @@ namespace PorygonC.Moves.Domain
         public string Category { set; get; }
 
         public Move(MoveKey moveKey){
-            var txt = File.ReadAllText("move.json");
+            var txt = File.ReadAllText("Common/PBS/move.json");
             var dict = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(txt);
             var move = dict[(int)moveKey];
 
             Key = Enum.TryParse((string)move["Key"], out MoveKey m)? m : MoveKey.NONE;
-            Type = Enum.TryParse((string)move["Key"], out TypeKey t)? t : TypeKey.UNKNOWN;
+            Type = Enum.TryParse((string)move["Key"], out Type t)? t : Type.UNKNOWN;
             
             Name = (string)move["Name"];
             Target = (string)move["Target"];

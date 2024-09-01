@@ -1,19 +1,18 @@
 using System.Collections.Generic;
-using PorygonC.Pokemons.Domain;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Linq;
 using System;
-using PorygonC.Moves.Domain;
 
 
-namespace PorygonC.Species.Domain
+
+namespace PorygonC.Domain
 {
 	class BaseSpecie
 	{
 		public byte Generation { get; set; }
-		public TypeKey Type1 { get; set; }
-		public TypeKey Type2 { get; set; }
+		public Type Type1 { get; set; }
+		public Type Type2 { get; set; }
 		public string Name { get; set; }
 		public object[] Moves { get; set; }
 		public MoveKey[] TutorMoves { get; set; }
@@ -35,8 +34,8 @@ namespace PorygonC.Species.Domain
 		public BaseSpecie(Dictionary<string,object> dict){
 			
 			Generation = (byte)(double)dict["Generation"];
-			Type1 = Enum.TryParse((string)dict["Type1"],out TypeKey T1) ? T1 : TypeKey.UNKNOWN;
-			Type2 = Enum.TryParse((string)dict["Type2"],out TypeKey T2) ? T2 : TypeKey.UNKNOWN;
+			Type1 = Enum.TryParse((string)dict["Type1"],out Type T1) ? T1 : Type.UNKNOWN;
+			Type2 = Enum.TryParse((string)dict["Type2"],out Type T2) ? T2 : Type.UNKNOWN;
 			Height = float.Parse((string)dict["Height"]);
 			Weight = float.Parse((string)dict["Weight"]);
 

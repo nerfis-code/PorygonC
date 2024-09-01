@@ -1,6 +1,6 @@
 using System;
 using Godot;
-using PorygonC.Pokemons.Domain;
+using PorygonC.Domain;
 
 public static class CollisionShapeHelper
 {
@@ -27,18 +27,18 @@ public static class CollisionShapeHelper
 				}
 			}
 			var width = (maxX - minX + 1) / 100f;
-			var height = (maxY - minY + 1 + (node.Identity.Type1 == TypeKey.FLYING || node.Identity.Type2 == TypeKey.FLYING ? 20 : 0) ) / 100f;
+			var height = (maxY - minY + 1 ) / 100f;
 
-        	var boxShape = new BoxShape3D
-        	{
-            	Size = new Vector3(width, height, 0.1f) // El tercer valor es la profundidad del box
-        	};
+			var boxShape = new BoxShape3D
+			{
+				Size = new Vector3(width, height, 0.1f) // El tercer valor es la profundidad del box
+			};
 
-        	// Asignar la forma de colisión al CollisionShape3D
-        	var collisionShape = node.GetNode<CollisionShape3D>("CollisionShape3D");
-        	collisionShape.Shape = boxShape;
+			// Asignar la forma de colisión al CollisionShape3D
+			var collisionShape = node.GetNode<CollisionShape3D>("CollisionShape3D");
+			collisionShape.Shape = boxShape;
 
-        	var Y = (minY / 100f) + (height / 2) - (box / 100f / 2);
+			var Y = (minY / 100f) + (height / 2) - (box / 100f / 2);
 			var X = (minX / 100f) + (width / 2) - (box / 100f / 2);
 			collisionShape.Position = new Vector3(-X , -Y, 0);
 			

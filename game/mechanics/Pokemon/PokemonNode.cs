@@ -1,6 +1,6 @@
 using Godot;
-using PorygonC.Pokemons.Domain;
-using PorygonC.Scenes.Domain;
+using PorygonC.Domain;
+using PorygonC.Domain;
 using System;
 using System.Threading.Tasks;
 

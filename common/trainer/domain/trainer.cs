@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using PorygonC.Pokemons.Domain;
 
-namespace PorygonC.Trainers.Domain
+namespace PorygonC.Domain
 {
 	public class Trainer
 	{

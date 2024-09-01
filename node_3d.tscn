@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://anyScript.cs" id="1_bylyx"]
 [ext_resource type="Texture2D" uid="uid://drvgbjgo7gcji" path="res://Game/Graphics/kenney_prototype-textures/PNG/Green/texture_01.png" id="2_6tj6g"]
 [ext_resource type="Texture2D" uid="uid://ch4cv00ek0on1" path="res://Game/Graphics/kenney_prototype-textures/PNG/Orange/texture_01.png" id="3_7p8g0"]
-[ext_resource type="PackedScene" uid="uid://06du11ubqtbe" path="res://Game/Characters/character.tscn" id="3_g3tyb"]
+[ext_resource type="PackedScene" uid="uid://06du11ubqtbe" path="res://Game/Characters/Player/character.tscn" id="4_tkr27"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8sxu6"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,7 +50,7 @@ shadow_enabled = true
 shadow_blur = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0.00039388, -0.000149696, -0.000335633, 0.95937, 0.282151, 0.000254757, -0.282151, 0.95937, 0, 1.7769, 2.72031)
+transform = Transform3D(1, 0.000393876, -0.000149707, -0.000318166, 0.938754, 0.344588, 0.000276263, -0.344588, 0.938754, 1.14842, 2.04804, 2.72031)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -72,5 +72,5 @@ mesh = SubResource("BoxMesh_qta3y")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0yp0a")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("3_g3tyb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44204, 1.58312, 1.62606)
+[node name="CharacterBody3D" parent="." instance=ExtResource("4_tkr27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44204, 1.58312, 2.13219)

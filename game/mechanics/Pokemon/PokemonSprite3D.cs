@@ -1,5 +1,5 @@
 using Godot;
-using PorygonC.Pokemons.Domain;
+using PorygonC.Domain;
 
 public partial class PokemonSprite3D : Sprite3D
 {

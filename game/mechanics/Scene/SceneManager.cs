@@ -4,34 +4,34 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
-using PorygonC.Moves.Domain;
-using PorygonC.Pokemons.Domain;
-using PorygonC.Scenes.Domain;
-using PorygonC.Scenes.Infrastructure;
-using PorygonC.Trainers.Domain;
+using PorygonC.Domain;
+using PorygonC.Domain;
+using PorygonC.Domain;
+using PorygonC.Infrastructure;
+using PorygonC.Domain;
 
 public static class SceneNodeManager
 {
-    public static void InitializeSceneNode(Node3D node,Trainer player, Trainer opponent)
-    {
-        SceneManager.InitializeScene(player,opponent);
+	public static void InitializeSceneNode(Node3D node,Trainer player, Trainer opponent)
+	{
+		SceneManager.InitializeScene(player,opponent);
 		
 		
-		Node3D scene = (Node3D)GD.Load<PackedScene>("res://Game/Mechanics/scene.tscn").Instantiate();
+		Node3D scene = new Node3D();
 		node.AddChild(scene);
 		scene.Position += new Vector3 (0,2,0);
 
-        string[] PATH = {"res://Game/Graphics/Pokemon/Back/", "res://Game/Graphics/Pokemon/Front/"};
+		string[] PATH = {"res://Game/Graphics/Pokemon/Back/", "res://Game/Graphics/Pokemon/Front/"};
 		Vector3[] POS = [new Vector3(-0.7f,0,0.5f), new Vector3(0.7f,0,-0.5f)];
 
 		async Task ShowTextRecived(string txt)
 		{
-			var overlay_message = (OverlayMessage)GD.Load<PackedScene>("res://Game/Mechanics/Menus/overlay_message.tscn").Instantiate();
-			overlay_message.Create(txt);
-			scene.AddChild(overlay_message);
-			await overlay_message.WaitPressedKey();
-			scene.RemoveChild(overlay_message);
-			overlay_message.QueueFree();
+			var OverlayMessage = (OverlayMessage)GD.Load<PackedScene>("res://Game/Mechanics/Menus/OverlayMessage.tscn").Instantiate();
+			OverlayMessage.Create(txt);
+			scene.AddChild(OverlayMessage);
+			await OverlayMessage.WaitPressedKey();
+			scene.RemoveChild(OverlayMessage);
+			OverlayMessage.QueueFree();
 			
 		}
 
@@ -52,7 +52,6 @@ public static class SceneNodeManager
 		
 		
 		
-    }
+	}
 	
 }
-

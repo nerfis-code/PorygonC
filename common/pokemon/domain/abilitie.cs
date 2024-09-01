@@ -1,4 +1,4 @@
-namespace PorygonC.Pokemons.Domain
+namespace PorygonC.Domain
 {
     enum Abilitie
     {

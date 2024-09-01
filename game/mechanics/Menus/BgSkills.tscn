@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dn6i5cecilduf"]
 
-[ext_resource type="Script" path="res://Game/Mechanics/Menus/bg_skills.cs" id="1_tawk4"]
-[ext_resource type="Texture2D" uid="uid://b1k3yab7nmmkn" path="res://Game/Mechanics/Menus/bg_skills.png" id="2_u7f8e"]
+[ext_resource type="Script" path="res://Game/Mechanics/Menus/BgSkills.cs" id="1_tawk4"]
+[ext_resource type="Texture2D" uid="uid://bf86gjxbaq0aq" path="res://Game/Graphics/UI/Summary/bg_skills.png" id="2_u7f8e"]
 [ext_resource type="Texture2D" uid="uid://c2tri4xu43e4p" path="res://Game/Graphics/Pokemon/Front/PIKACHU.png" id="3_2eyp7"]
 [ext_resource type="Script" path="res://Game/Mechanics/Pokemon/PokemonSprite2D.cs" id="3_rn86c"]
 [ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="3_uxrpk"]
@@ -12,7 +12,7 @@ bg_color = Color(0.0941176, 0.752941, 0.12549, 1)
 [sub_resource type="Theme" id="Theme_eegxj"]
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_nrtfo")
 
-[node name="bg_skills" type="Control"]
+[node name="BgSkills" type="Control"]
 layout_mode = 3
 anchor_right = 0.444
 anchor_bottom = 0.594

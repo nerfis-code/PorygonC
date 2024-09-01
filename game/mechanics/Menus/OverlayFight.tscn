@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dn42yretedyij"]
 
-[ext_resource type="Texture2D" uid="uid://chh6h8gcu5naf" path="res://Game/Mechanics/Menus/overlay_fight.png" id="1_o7h14"]
-[ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="2_vildd"]
+[ext_resource type="Texture2D" uid="uid://v08fdf0extjq" path="res://Game/Graphics/UI/Battle/overlay_fight.png" id="1_he2wf"]
+[ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="2_ng7g1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqcjd"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -20,7 +20,7 @@ grow_vertical = 2
 
 [node name="OverlayFight" type="Sprite2D" parent="."]
 position = Vector2(850, 569)
-texture = ExtResource("1_o7h14")
+texture = ExtResource("1_he2wf")
 
 [node name="Action" type="GridContainer" parent="."]
 layout_mode = 0
@@ -37,7 +37,7 @@ clip_contents = true
 custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
-theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_fonts/font = ExtResource("2_ng7g1")
 theme_override_font_sizes/font_size = 25
 text = "Ataque"
 
@@ -46,7 +46,7 @@ clip_contents = true
 custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
-theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_fonts/font = ExtResource("2_ng7g1")
 theme_override_font_sizes/font_size = 25
 text = "Ataque"
 
@@ -55,7 +55,7 @@ clip_contents = true
 custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
-theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_fonts/font = ExtResource("2_ng7g1")
 theme_override_font_sizes/font_size = 25
 text = "Ataque"
 
@@ -64,6 +64,6 @@ clip_contents = true
 custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
-theme_override_fonts/font = ExtResource("2_vildd")
+theme_override_fonts/font = ExtResource("2_ng7g1")
 theme_override_font_sizes/font_size = 25
 text = "Ataque"

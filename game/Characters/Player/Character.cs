@@ -1,5 +1,5 @@
 using Godot;
-using PorygonC.Trainers.Domain;
+using PorygonC.Domain;
 using System;
 
 public partial class Character : CharacterBody3D
@@ -31,14 +31,14 @@ public partial class Character : CharacterBody3D
 		var Touch = CheckCollisions();
 		if (Touch != null){
 			
-			if (GetParent().HasNode("bg_skills"))
+			if (GetParent().HasNode("BgSkills"))
 			{
-				var node = GetParent().GetNode<bg_skills>("bg_skills");
+				var node = GetParent().GetNode<BgSkills>("BgSkills");
 				if (node.Identity == Touch.Identity) return ;
 				GetParent().RemoveChild(node);
 				node.QueueFree();
 			}
-			var Sumary = (bg_skills)GD.Load<PackedScene>("res://Game/Mechanics/Menus/bg_skills.tscn").Instantiate();
+			var Sumary = (BgSkills)GD.Load<PackedScene>("res://Game/Mechanics/Menus/BgSkills.tscn").Instantiate();
 			Sumary.Identity = Touch.Identity;
 			GetParent().AddChild(Sumary);
 			
@@ -56,9 +56,9 @@ public partial class Character : CharacterBody3D
 		}
 
 		if (Input.IsActionJustPressed("ui_exit")){
-			if (GetParent().HasNode("bg_skills"))
+			if (GetParent().HasNode("BgSkills"))
 			{
-				var node = GetParent().GetNode<bg_skills>("bg_skills");
+				var node = GetParent().GetNode<BgSkills>("BgSkills");
 				GetParent().RemoveChild(node);
 				node.QueueFree();
 			}

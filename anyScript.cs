@@ -1,17 +1,17 @@
 using Godot;
 using System;
-using PorygonC.Pokemons.Domain;
-using PorygonC.Pokemons.Application;
-using PorygonC.Scenes.Domain;
+using PorygonC.Domain;
+using PorygonC.Application;
+using PorygonC.Domain;
 using System.IO;
-using PorygonC.Species.Domain;
+using PorygonC.Domain;
 using Utf8Json;
 
 using System.Collections.Generic;
-using PorygonC.Scenes.Infrastructure;
-using PorygonC.Trainers.Domain;
+using PorygonC.Infrastructure;
+using PorygonC.Domain;
 using System.Linq;
-using PorygonC.Moves.Domain;
+using PorygonC.Domain;
 public partial class anyScript : Node3D{
 	public override void _Ready(){
 		// var any = new PokemonConstructor{};

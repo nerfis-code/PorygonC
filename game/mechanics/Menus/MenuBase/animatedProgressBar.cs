@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Godot;
-using PorygonC.Scenes.Domain;
+using PorygonC.Domain;
 
 public static class AnimatedProgressBar 
 {

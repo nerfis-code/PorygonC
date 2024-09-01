@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://06du11ubqtbe"]
 
-[ext_resource type="Script" path="res://Game/Characters/Character.cs" id="1_3q8xs"]
-[ext_resource type="Texture2D" uid="uid://dk4d66f0rrxq0" path="res://Game/Characters/trainer.png" id="2_1qcc4"]
+[ext_resource type="Script" path="res://Game/Characters/Player/Character.cs" id="1_tiuqh"]
+[ext_resource type="Texture2D" uid="uid://ba1p5f71f4e64" path="res://Game/Graphics/Characters/trainer_POKEMONTRAINER_Brendan.png" id="2_1qcc4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8whe"]
 size = Vector3(0.3, 0.4, 0.1)
@@ -146,7 +146,7 @@ size = Vector3(0.8, 0.3, 0.4)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44204, 1.58312, 0)
-script = ExtResource("1_3q8xs")
+script = ExtResource("1_tiuqh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00852412, 0)
@@ -157,8 +157,6 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_e5kkb")
 animation = &"back"
-frame = 2
-frame_progress = 0.993357
 
 [node name="Area3D" type="Area3D" parent="."]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1k3yab7nmmkn"
-path="res://.godot/imported/bg_skills.png-c13f452c194537cb90ff6b6b1f8447ae.ctex"
+uid="uid://v08fdf0extjq"
+path="res://.godot/imported/overlay_fight.png-d2f6ccf9ce83f6544e4c9147d60039b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Mechanics/Menus/bg_skills.png"
-dest_files=["res://.godot/imported/bg_skills.png-c13f452c194537cb90ff6b6b1f8447ae.ctex"]
+source_file="res://Game/Graphics/UI/Battle/overlay_fight.png"
+dest_files=["res://.godot/imported/overlay_fight.png-d2f6ccf9ce83f6544e4c9147d60039b3.ctex"]
 
 [params]
 
