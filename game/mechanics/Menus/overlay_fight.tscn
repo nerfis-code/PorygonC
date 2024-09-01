@@ -38,7 +38,7 @@ custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Ataque"
 
 [node name="Move2" type="Button" parent="Action"]
@@ -47,7 +47,7 @@ custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Ataque"
 
 [node name="Move3" type="Button" parent="Action"]
@@ -56,7 +56,7 @@ custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Ataque"
 
 [node name="Move4" type="Button" parent="Action"]
@@ -65,5 +65,5 @@ custom_minimum_size = Vector2(165, 30)
 layout_mode = 2
 theme = SubResource("Theme_3m2h1")
 theme_override_fonts/font = ExtResource("2_vildd")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Ataque"

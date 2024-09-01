@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using PorygonC.Moves.Domain;
 
 namespace PorygonC.Pokemons.Domain
 {
@@ -9,20 +10,23 @@ namespace PorygonC.Pokemons.Domain
 	{
 		public string Name { get; set; }
 		public PokemonKey Key { get; set; }
-		private ushort _Ps { get; set;}
-		public ushort Ps { 
+		private short _Ps { get; set;}
+		public short Ps { 
 			get => _Ps;
 			set{
-				_Ps = value;
+				_Ps = Math.Max((short)0,value);
 				ReceivedDamage?.Invoke();
+				if(Ps == 0) Defeated?.Invoke();
 			}
 		}
 		public TypeKey Type1 { get; set; }
 		public TypeKey Type2 { get; set; }
 		public byte Level { get; set; }
 		public ushort[] Stats { get; set; }
-		public Move CurrMove { get; set; } = Move.NONE;
+		public Move CurrMove { get; set; }
 		public List<Move> Moves { get; set; }
+		public bool IsDefeated { get; set; }
+		public event Action Defeated;
 		public event Action ReceivedDamage;
 	}
 

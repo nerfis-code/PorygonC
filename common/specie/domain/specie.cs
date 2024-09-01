@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Linq;
 using System;
+using PorygonC.Moves.Domain;
 
 
 namespace PorygonC.Species.Domain
@@ -15,8 +16,8 @@ namespace PorygonC.Species.Domain
 		public TypeKey Type2 { get; set; }
 		public string Name { get; set; }
 		public object[] Moves { get; set; }
-		public Move[] TutorMoves { get; set; }
-		public Move[] EggMoves { get; set; }
+		public MoveKey[] TutorMoves { get; set; }
+		public MoveKey[] EggMoves { get; set; }
 		public Abilitie Abilitie1 { get; set; }
 		public Abilitie Abilitie2 { get; set; }
 		public Abilitie HiddenAbilitie { get; set; }
@@ -50,8 +51,8 @@ namespace PorygonC.Species.Domain
 			Flags = ((List<object>)dict["Flags"]).Select(n => (string)n).ToArray();
 			EVs = ((List<object>)dict["EVs"]).ToArray();
 
-			TutorMoves = ((List<object>)dict["TutorMoves"]).Select(n => Enum.TryParse((string)n,out Move mv) ? mv : Move.MEGAHORN).ToArray();
-			EggMoves = ((List<object>)dict["EggMoves"]).Select(n => Enum.TryParse((string)n,out Move mv) ? mv : Move.MEGAHORN).ToArray();
+			TutorMoves = ((List<object>)dict["TutorMoves"]).Select(n => Enum.TryParse((string)n,out MoveKey mv) ? mv : MoveKey.NONE).ToArray();
+			EggMoves = ((List<object>)dict["EggMoves"]).Select(n => Enum.TryParse((string)n,out MoveKey mv) ? mv : MoveKey.NONE).ToArray();
 			
 
 		}

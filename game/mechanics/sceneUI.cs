@@ -6,8 +6,13 @@ public static class SceneUi
     public static void Load(Scene scene, Node3D node, int index = 0)
     {
         if (index >= scene.PokemonsPlayerGroup.Count){
+
+            var existingOverlay = node.GetNode("overlay_fight");
+            node.RemoveChild(existingOverlay);
+            existingOverlay.QueueFree();
+
+            scene.EndTurn += () => Load(scene,node,0);
             scene.InitializeTurn();
-            Load(scene,node,0);
             return;
         }
         var pkm = scene.PokemonsPlayerGroup[index];
@@ -19,7 +24,7 @@ public static class SceneUi
         foreach (Button button in menu.GetNode("Action").GetChildren())
         {
             var currMove = pkm.Moves[n];
-            button.Text = pkm.Moves[n].ToString();
+            button.Text = pkm.Moves[n].Name;
             button.Pressed += () => {
                 pkm.CurrMove = currMove;
                 SceneUi.Load(scene, node, index + 1);
@@ -32,6 +37,7 @@ public static class SceneUi
         if (node.HasNode("overlay_fight"))
         {
             var existingOverlay = node.GetNode("overlay_fight");
+            node.RemoveChild(existingOverlay);
             existingOverlay.QueueFree();
         }
         node.AddChild(menu);

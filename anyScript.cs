@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using PorygonC.Scenes.Infrastructure;
 using PorygonC.Trainers.Domain;
 using System.Linq;
+using PorygonC.Moves.Domain;
 public partial class anyScript : Node3D{
 	public override void _Ready(){
 		// var any = new PokemonConstructor{};
@@ -30,7 +31,7 @@ public partial class anyScript : Node3D{
 		oponent.AddPokemonsToTeam(new PokemonKey[] {PokemonKey.GIRATINA,PokemonKey.POLTEAGEIST,PokemonKey.MEW}.Select(n => pkc.Create((int)n)).ToArray());
 		SceneNodeManager.InitializeSceneNode(this,player,oponent);
 		
-
+		GD.Print(new Move(MoveKey.DARKPULSE).Description);
 	}
 	
 }

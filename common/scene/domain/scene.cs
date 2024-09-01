@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
+using PorygonC.Moves.Domain;
 using PorygonC.Pokemons.Domain;
 
 namespace PorygonC.Scenes.Domain
@@ -13,6 +15,13 @@ namespace PorygonC.Scenes.Domain
         public List<Pokemon> PokemonsPlayerGroup { get; set; }
         public List<Pokemon> PokemonsOpponentGroup { get; set; }
 
+        public delegate Task ActionHandler(Move move, Pokemon user);
+        public event ActionHandler OnAction;
+
+        public delegate Task receivedHandler(Move move, Pokemon target , short received);
+        public event receivedHandler OnReceived;
+
+        public event Action EndTurn;
 
         public void AssigPlayerGroup(List<Pokemon> group)
         {
@@ -23,12 +32,12 @@ namespace PorygonC.Scenes.Domain
             PokemonsOpponentGroup = group;
         }
 
-        public void InitializeTurn()
+        public async void InitializeTurn()
         {
             Ia();
             foreach (var item in PokemonsPlayerGroup)
             {
-                if (item.CurrMove == Move.NONE){
+                if (item.CurrMove == null){
                     GD.Print("Pendejo");
                     return;
                 }
@@ -36,11 +45,20 @@ namespace PorygonC.Scenes.Domain
             Turn++;
             var order = Priority();
             for(int i=0;i<order.Length;i++){
-
-                GD.Print(order[i].Name + " ha realizado " + order[i].CurrMove.ToString());
-                GD.Print(order[i].Name + " ha ataquado a " + order[(i+1) % order.Length].Name);
-                order[(i+1) % order.Length].Ps -= 10;
-                order[i].CurrMove = Move.NONE;
+                if (order[i].IsDefeated) continue;
+                await CarryOutAttack(order[i].CurrMove,order[i],[order[(i+1) % order.Length]]);
+                order[i].CurrMove = null;
+            }
+            EndTurn?.Invoke();
+            EndTurn = null;
+        }
+        private async Task CarryOutAttack(Move move, Pokemon user, List<Pokemon> targets)
+        {
+            await OnAction?.Invoke(move, user);
+            foreach (var target in targets)
+            {
+                target.Ps -= move.Power;
+                await OnReceived?.Invoke(move, target, move.Power);
             }
         }
         private void Ia()
