@@ -1,16 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn6i5cecilduf"]
+[gd_scene load_steps=11 format=3 uid="uid://dn6i5cecilduf"]
 
 [ext_resource type="Script" path="res://Game/Mechanics/Menus/BgSkills.cs" id="1_tawk4"]
 [ext_resource type="Texture2D" uid="uid://bf86gjxbaq0aq" path="res://Game/Graphics/UI/Summary/bg_skills.png" id="2_u7f8e"]
 [ext_resource type="Texture2D" uid="uid://c2tri4xu43e4p" path="res://Game/Graphics/Pokemon/Front/PIKACHU.png" id="3_2eyp7"]
 [ext_resource type="Script" path="res://Game/Mechanics/Pokemon/PokemonSprite2D.cs" id="3_rn86c"]
 [ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="3_uxrpk"]
+[ext_resource type="Texture2D" uid="uid://b3mt4x7aw0ih3" path="res://Game/Graphics/UI/Party/overlay_hp_back.png" id="6_51fpw"]
+[ext_resource type="Texture2D" uid="uid://dkc0lyxymqrjm" path="res://Game/Graphics/UI/Party/overlay_hp.png" id="7_ttumi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrtfo"]
 bg_color = Color(0.0941176, 0.752941, 0.12549, 1)
 
 [sub_resource type="Theme" id="Theme_eegxj"]
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_nrtfo")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyxey"]
+atlas = ExtResource("7_ttumi")
+region = Rect2(0, 16, 96, 8)
 
 [node name="BgSkills" type="Control"]
 layout_mode = 3
@@ -298,3 +304,15 @@ theme_override_constants/line_spacing = 28
 theme_override_fonts/font = ExtResource("3_uxrpk")
 theme_override_font_sizes/font_size = 25
 text = "Velocidad"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 271.0
+offset_right = 163.0
+offset_bottom = 285.0
+value = 50.0
+fill_mode = 1
+texture_under = ExtResource("6_51fpw")
+texture_progress = SubResource("AtlasTexture_xyxey")
+texture_progress_offset = Vector2(32, 2)

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Godot;
 
 namespace PorygonC.Domain
 {
@@ -13,38 +12,55 @@ namespace PorygonC.Domain
         public List<Pokemon> PokemonsPlayerGroup { get; set; }
         public List<Pokemon> PokemonsOpponentGroup { get; set; }
 
+        public event Action<Pokemon> Deleted;
 
-        public event Action<Scene,List<Pokemon>,List<Pokemon>> OnAction;
-        public event Action<Scene,List<Pokemon>,List<Pokemon>,Pokemon,short> OnReceived;
+
+        //public event Action<Scene,List<Pokemon>,List<Pokemon>> OnAction;
+        //public event Action<Scene,List<Pokemon>,List<Pokemon>,Pokemon,short> OnReceived;
 
         public event Action EndTurn;
 
         public void AssigPlayerGroup(List<Pokemon> group)
         {
             PokemonsPlayerGroup = group;
+            
+            foreach (var pokemon in group)
+            {
+                async Task WasDefeated(){
+                    RemovePokemon(pokemon);
+                }
+                pokemon.Defeated += WasDefeated;
+            }
+
         }
         public void AssigOpponentGroup(List<Pokemon> group)
         {
             PokemonsOpponentGroup = group;
+            foreach (var pokemon in group)
+            {
+                async Task WasDefeated(){
+                    RemovePokemon(pokemon);
+                }
+                pokemon.Defeated += WasDefeated;
+            }
+        }
+
+        public void RemovePokemon(Pokemon pokemon){
+            if(PokemonsPlayerGroup.Contains(pokemon)) PokemonsPlayerGroup.Remove(pokemon);
+            else PokemonsOpponentGroup.Remove(pokemon);
+            Deleted?.Invoke(pokemon);
         }
 
         public async Task InitializeTurn()
         {
             Ia();
-            foreach (var item in PokemonsPlayerGroup)
-            {
-                if (item.CurrMove == null){
-                    GD.Print("Pendejo");
-                    return;
-                }
-            }
-            Turn++;
             var order = Priority();
-            foreach (var item in order)
+            foreach (var pokemon in order)
             {
-                await item.Attk([item]);
+                await pokemon.Attack([pokemon]);
             }
 
+            Turn++;
             EndTurn?.Invoke();
             EndTurn = null;
             

@@ -5,6 +5,7 @@ using System.Linq;
 using Utf8Json;
 
 using PorygonC.Domain;
+using System.Threading.Tasks;
 
 namespace PorygonC.Application
 {
@@ -16,7 +17,7 @@ namespace PorygonC.Application
 			var b = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(a);
 			var r = new Random{};
 			var pkm = new Specie(b[dex]);
-			return new Pokemon
+			var res = new Pokemon
 			{
 				Name = pkm.Name,
 				Type1 = pkm.Type1,
@@ -25,8 +26,15 @@ namespace PorygonC.Application
 				Stats = pkm.BaseStats.Select(n => (ushort)n).ToArray(),
 				Ps = pkm.BaseStats[0],
 				Key = pkm.Key,
-				Moves = new int[] {0,0,0,0}.Select(n => new Move((MoveKey)r.Next(0,833))).ToList()
+				Moves = new int[] {0,0,0,0}.Select(n => new Move((MoveKey)r.Next(0,833))).ToList(),
+				IsDefeated = false
 			};
+			async Task WasDefeate(){
+				res.IsDefeated = true;
+			}
+			res.Defeated += WasDefeate;
+			return res;
 		}
+
 	} 
 }

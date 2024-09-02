@@ -18,20 +18,28 @@ namespace PorygonC.Domain
 		public Move CurrMove { get; set; }
 		public List<Move> Moves { get; set; }
 		public bool IsDefeated { get; set; }
+
+
+		//behaviors
 		public delegate Task task();
+		public delegate Task _Info(string txt);
+
 		public event task Defeated;
 		public event task Received;
-		public delegate Task _Info(string txt);
 		public event _Info Send;
 
 		public async Task Take(short received){
 			Ps = (short)Math.Max(0,Ps -received);
 			await Received?.Invoke();
 			await Send?.Invoke(Name + " ha recibido " + received + " de damage ");
-			//if(Ps == 0) await Defeated?.Invoke();
+			if(Ps == 0){ 
+				await Send?.Invoke(Name + " ha sido debilitado ");
+				await Defeated?.Invoke();
+			}
 		}
 
-		public async Task Attk(List<Pokemon> targets){
+		public async Task Attack(List<Pokemon> targets){
+			if (IsDefeated) return;
 			await Send?.Invoke(Name + " ha realizado el movimiento " + CurrMove.Name);
 			foreach (var target in targets)
 			{

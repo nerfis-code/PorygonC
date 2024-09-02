@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Godot;
 using PorygonC.Domain;
-using PorygonC.Domain;
-using PorygonC.Domain;
 using PorygonC.Infrastructure;
-using PorygonC.Domain;
 
 public static class SceneNodeManager
 {
@@ -17,7 +11,8 @@ public static class SceneNodeManager
 		SceneManager.InitializeScene(player,opponent);
 		
 		
-		Node3D scene = new Node3D();
+		SceneNode scene = (SceneNode)GD.Load<PackedScene>("res://Game/Mechanics/Scene/SceneNode.tscn").Instantiate();
+		scene.Identity = SceneManager.Scene;
 		node.AddChild(scene);
 		scene.Position += new Vector3 (0,2,0);
 
@@ -49,9 +44,6 @@ public static class SceneNodeManager
 		}
 		SceneUi.Load(SceneManager.Scene,scene);
 
-		
-		
-		
 	}
 	
 }

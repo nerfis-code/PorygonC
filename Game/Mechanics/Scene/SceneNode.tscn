@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvywh60axsbaq"]
+
+[ext_resource type="Script" path="res://Game/Mechanics/Scene/SceneNode.cs" id="1_st0r0"]
+
+[node name="SceneNode" type="Node3D"]
+script = ExtResource("1_st0r0")
