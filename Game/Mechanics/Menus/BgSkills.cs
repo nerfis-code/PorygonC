@@ -27,13 +27,13 @@ public partial class BgSkills : Control
 		GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
 		async Task task(){
 			GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
-			await AnimatedProgressBar.Animate(GetNode<ProgressBar>("HP"),Identity.Ps);
+			await GetNode<PsProgressBar>("HP").AssingPs(Identity.Ps);
 		};
 		action = task();
 		Identity.Received += task;
 		//#18C020
-		GetNode<ProgressBar>("HP").MaxValue = Identity.Stats[0];
-		GetNode<ProgressBar>("HP").Value = Identity.Ps;
+		GetNode<PsProgressBar>("HP").MaxValue = Identity.Stats[0];
+		GetNode<PsProgressBar>("HP").Value = Identity.Ps;
 		GetNode("Stats").GetNode<Label>("Attk").Text = Identity.Stats[1].ToString();
 		GetNode("Stats").GetNode<Label>("Def").Text = Identity.Stats[2].ToString();
 		GetNode("Stats").GetNode<Label>("SpAttk").Text = Identity.Stats[4].ToString();
@@ -45,7 +45,7 @@ public partial class BgSkills : Control
 	{
 		async Task task(){
 			GetNode("Stats").GetNode<Label>("Ps").Text = Identity.Stats[0].ToString() + "/" + Identity.Ps.ToString();
-			await AnimatedProgressBar.Animate(GetNode<ProgressBar>("HP"),Identity.Ps);
+			await GetNode<PsProgressBar>("HP").AssingPs(Identity.Ps);
 		};
 		Identity.Received -= task;
 		base._ExitTree();

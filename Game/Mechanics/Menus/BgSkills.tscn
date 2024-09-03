@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dn6i5cecilduf"]
+[gd_scene load_steps=12 format=3 uid="uid://dn6i5cecilduf"]
 
 [ext_resource type="Script" path="res://Game/Mechanics/Menus/BgSkills.cs" id="1_tawk4"]
 [ext_resource type="Texture2D" uid="uid://bf86gjxbaq0aq" path="res://Game/Graphics/UI/Summary/bg_skills.png" id="2_u7f8e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Game/Mechanics/Pokemon/PokemonSprite2D.cs" id="3_rn86c"]
 [ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="3_uxrpk"]
 [ext_resource type="Texture2D" uid="uid://b3mt4x7aw0ih3" path="res://Game/Graphics/UI/Party/overlay_hp_back.png" id="6_51fpw"]
+[ext_resource type="Script" path="res://Game/Mechanics/Menus/MenuBase/PsProgressBar.cs" id="6_cv4ho"]
 [ext_resource type="Texture2D" uid="uid://dkc0lyxymqrjm" path="res://Game/Graphics/UI/Party/overlay_hp.png" id="7_ttumi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrtfo"]
@@ -168,7 +169,7 @@ theme_override_fonts/font = ExtResource("3_uxrpk")
 theme_override_font_sizes/font_size = 25
 text = "Habilidad"
 
-[node name="HP" type="ProgressBar" parent="."]
+[node name="HP" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 360.0
 offset_top = 111.0
@@ -176,7 +177,8 @@ offset_right = 456.0
 offset_bottom = 117.0
 theme = SubResource("Theme_eegxj")
 value = 50.0
-show_percentage = false
+script = ExtResource("6_cv4ho")
+Texture = ExtResource("7_ttumi")
 
 [node name="Stats" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -306,6 +308,7 @@ theme_override_font_sizes/font_size = 25
 text = "Velocidad"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 25.0
 offset_top = 271.0

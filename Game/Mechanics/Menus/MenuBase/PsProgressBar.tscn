@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv6mvol2weiev"]
+
+[ext_resource type="Texture2D" uid="uid://c2m6hyfgmhbw1" path="res://Game/Graphics/UI/Battle/overlay_hp.png" id="1_od3r1"]
+[ext_resource type="Script" path="res://Game/Mechanics/Menus/MenuBase/PsProgressBar.cs" id="2_m65fh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgf5n"]
+atlas = ExtResource("1_od3r1")
+region = Rect2(0, 12, 96, 6)
+
+[node name="PsProgressBar" type="TextureProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+texture_progress = SubResource("AtlasTexture_fgf5n")
+script = ExtResource("2_m65fh")
+Texture = ExtResource("1_od3r1")

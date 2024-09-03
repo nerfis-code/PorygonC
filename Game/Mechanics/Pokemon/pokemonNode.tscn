@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b52ncwyyup8qy"]
+[gd_scene load_steps=11 format=3 uid="uid://b52ncwyyup8qy"]
 
 [ext_resource type="Script" path="res://Game/Mechanics/Pokemon/PokemonNode.cs" id="1_e68k3"]
 [ext_resource type="Script" path="res://Game/Mechanics/Pokemon/PokemonSprite3D.cs" id="2_qari3"]
 [ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="2_vtvca"]
+[ext_resource type="Script" path="res://Game/Mechanics/Menus/MenuBase/PsProgressBar.cs" id="4_rajqb"]
+[ext_resource type="Texture2D" uid="uid://c2m6hyfgmhbw1" path="res://Game/Graphics/UI/Battle/overlay_hp.png" id="5_453kt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4msu"]
 
@@ -14,6 +16,9 @@ bg_color = Color(0.189847, 0.700655, 0.489799, 1)
 
 [sub_resource type="Theme" id="Theme_3kkld"]
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_6rr6f")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vmoh"]
+atlas = ExtResource("5_453kt")
 
 [node name="PokemonNode" type="RigidBody3D"]
 script = ExtResource("1_e68k3")
@@ -44,7 +49,7 @@ texture = SubResource("ViewportTexture_byl5r")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(80, 5)
+size = Vector2i(80, 6)
 
 [node name="Control" type="Control" parent="SubViewport"]
 layout_mode = 3
@@ -52,15 +57,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ProgressBar" type="ProgressBar" parent="SubViewport/Control"]
+[node name="ProgressBar" type="TextureProgressBar" parent="SubViewport/Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 40.0
-offset_bottom = -35.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 96.0
+offset_bottom = 18.0
 theme = SubResource("Theme_3kkld")
 value = 100.0
-show_percentage = false
+texture_progress = SubResource("AtlasTexture_0vmoh")
+script = ExtResource("4_rajqb")
+Texture = ExtResource("5_453kt")

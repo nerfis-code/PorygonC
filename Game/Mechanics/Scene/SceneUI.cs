@@ -1,21 +1,63 @@
+using System.Threading.Tasks;
 using Godot;
 using PorygonC.Domain;
 
-public static class SceneUi
+public class SceneUI
 {
-    public static void Load(Scene scene, Node3D node, int index = 0)
-    {
-        if (index >= scene.PokemonsPlayerGroup.Count){
+    public SceneNode Identity;
+    private TaskCompletionSource<bool> _keyPressCompletionSource;
 
-            var existingOverlay = node.GetNode("OverlayFight");
-            node.RemoveChild(existingOverlay);
+    public async Task Party()
+    {
+        Control menu = (Control)GD.Load<PackedScene>("res://Game/Mechanics/Menus/Party/Party.tscn").Instantiate();
+        Identity.AddChild(menu);
+
+        var col = 0;
+        foreach (var pokemon in Identity.Identity.Player.Team)
+        {
+            TextureButton Panel = (TextureButton)GD.Load<PackedScene>("res://Game/Mechanics/Menus/Party/Panel.tscn").Instantiate();
+            Panel.GetNode<Label>("Label").Text = pokemon.Name + (pokemon.IsDefeated ? " Dead" : "");
+
+            if(col == 0){
+                menu.GetNode<VBoxContainer>("Column1").AddChild(Panel);
+                col++;
+            }else{
+                menu.GetNode<VBoxContainer>("Column2").AddChild(Panel);
+                col--;
+            }
+            if(Identity.Identity.Where(pokemon) != null){
+                continue;
+            }
+            if(pokemon.IsDefeated){
+                continue;
+            }
+            
+            Panel.Pressed += ()=>{
+                Identity.RemoveChild(menu);
+                menu.QueueFree();
+                Identity.Identity.AssigGroup([pokemon],Identity.Identity.Group0);
+                _keyPressCompletionSource?.TrySetResult(true);
+            };
+        }
+        _keyPressCompletionSource = new TaskCompletionSource<bool>();
+		await _keyPressCompletionSource.Task;
+    }
+    public void Action(int index = 0)
+    {
+        if (index >= Identity.Identity.Group0.Count){
+
+            var existingOverlay = Identity.GetNode("OverlayFight");
+            Identity.RemoveChild(existingOverlay);
             existingOverlay.QueueFree();
 
-            scene.EndTurn += () => Load(scene,node,0);
-            scene.InitializeTurn();
+            Identity.Identity.EndTurn += () => Action(0);
+            Identity.Identity.InitializeTurn();
             return;
         }
-        var pkm = scene.PokemonsPlayerGroup[index];
+        var pkm = Identity.Identity.Group0[index];
+        if (pkm == null){
+            Action(index + 1);
+        }
 
         Control menu = (Control)GD.Load<PackedScene>("res://Game/Mechanics/Menus/OverlayFight.tscn").Instantiate();
         menu.Name = "OverlayFight";
@@ -27,19 +69,19 @@ public static class SceneUi
             button.Text = pkm.Moves[n].Name;
             button.Pressed += () => {
                 pkm.CurrMove = currMove;
-                SceneUi.Load(scene, node, index + 1);
+                Action(index + 1);
             };
 
             n++;
         }
 
         // Verificar si el nodo "OverlayFight" ya existe y eliminarlo adecuadamente
-        if (node.HasNode("OverlayFight"))
+        if (Identity.HasNode("OverlayFight"))
         {
-            var existingOverlay = node.GetNode("OverlayFight");
-            node.RemoveChild(existingOverlay);
+            var existingOverlay = Identity.GetNode("OverlayFight");
+            Identity.RemoveChild(existingOverlay);
             existingOverlay.QueueFree();
         }
-        node.AddChild(menu);
+        Identity.AddChild(menu);
     }
 }

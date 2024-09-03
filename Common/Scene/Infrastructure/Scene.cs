@@ -10,13 +10,10 @@ namespace PorygonC.Infrastructure
 		public static Scene Scene;
 		public static void InitializeScene(Trainer player, Trainer opponent)
 		{
-			var root = new Scene{};
+			var root = new Scene(player,opponent);
 			Scene = root;
 			var PkC = new PokemonConstructor{};
 			var r = new Random{};
-
-			root.AssigPlayerGroup(player.Team);
-			root.AssigOpponentGroup(opponent.Team);
 
 			//GameLoop.Main(root);
 		}

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsxhv88y6xowi"]
+
+[ext_resource type="Texture2D" uid="uid://d0d5ch8hykqe2" path="res://Game/Graphics/UI/Party/panel_blank.png" id="1_rskds"]
+[ext_resource type="Texture2D" uid="uid://yyccqc13x1ee" path="res://Game/Graphics/UI/Party/panel_rect_faint.png" id="2_xfkg6"]
+[ext_resource type="Texture2D" uid="uid://66v65fdxh4ak" path="res://Game/Graphics/UI/Party/panel_rect.png" id="3_cdjvf"]
+[ext_resource type="FontFile" uid="uid://bchkiuckoex16" path="res://Game/Fonts/power red and green.ttf" id="4_3j3st"]
+
+[node name="TextureButton2" type="TextureButton"]
+texture_normal = ExtResource("1_rskds")
+texture_pressed = ExtResource("2_xfkg6")
+texture_hover = ExtResource("3_cdjvf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 36.0
+offset_right = 236.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("4_3j3st")
+theme_override_font_sizes/font_size = 20
+text = "Pikachu"
+horizontal_alignment = 1
